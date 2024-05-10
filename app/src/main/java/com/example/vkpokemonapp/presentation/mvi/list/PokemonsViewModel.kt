@@ -1,4 +1,4 @@
-package com.example.vkpokemonapp.presentation.mvi
+package com.example.vkpokemonapp.presentation.mvi.list
 
 import android.util.Log
 import androidx.lifecycle.viewModelScope

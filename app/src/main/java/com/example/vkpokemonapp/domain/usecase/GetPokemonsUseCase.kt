@@ -9,6 +9,6 @@ class GetPokemonsUseCase(
     private val pokemonsRepository: PokemonsRepository
 ) {
     suspend fun execute(): List<Result> {
-        return pokemonsRepository.getPokemons(limit + 20, limit)
+        return pokemonsRepository.getPokemons(limit, limit)
     }
 }

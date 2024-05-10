@@ -2,6 +2,7 @@ package com.example.vkpokemonapp.domain.repository
 
 import com.example.vkpokemonapp.data.memory.Result
 import com.example.vkpokemonapp.data.remote.ApiService
+import com.example.vkpokemonapp.data.remote.response.PokemonDetailResponse
 import com.example.vkpokemonapp.data.repository.PokemonsRepository
 
 class PokemonsRepositoryImpl(
@@ -9,5 +10,9 @@ class PokemonsRepositoryImpl(
 ) : PokemonsRepository {
     override suspend fun getPokemons(offset: Int, limit: Int): List<Result> {
         return apiService.loadPokemons(offset, limit).results
+    }
+
+    override suspend fun getPokemonDetail(pokemonName: String): PokemonDetailResponse {
+        return apiService.loadPokemonDetail(pokemonName)
     }
 }

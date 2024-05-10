@@ -1,4 +1,4 @@
-package com.example.vkpokemonapp.presentation.mvi
+package com.example.vkpokemonapp.presentation.mvi.list
 
 import com.example.vkpokemonapp.data.memory.Result
 import com.example.vkpokemonapp.mviRealisation.UiState

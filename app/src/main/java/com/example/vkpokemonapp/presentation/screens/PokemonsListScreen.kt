@@ -40,11 +40,11 @@ fun PokemonsListScreen(
     ) {
         item {
             Text(
-                text = "Список покемонов!",
+                text = "Список покемонов",
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 15.dp)
-                    .padding(bottom = 30.dp),
+                    .padding(bottom = 20.dp),
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
                 fontSize = 24.sp

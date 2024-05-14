@@ -3,7 +3,6 @@ package com.example.vkpokemonapp.presentation.mvi.detail
 import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.example.vkpokemonapp.domain.usecase.GetPokemonDetailUseCase
-import com.example.vkpokemonapp.domain.usecase.GetPokemonsUseCase
 import com.example.vkpokemonapp.mviRealisation.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.StateFlow

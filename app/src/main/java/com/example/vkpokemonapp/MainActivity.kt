@@ -8,7 +8,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.example.vkpokemonapp.presentation.screens.HomeScreen
-import com.example.vkpokemonapp.presentation.screens.PokemonsListScreen
 import com.example.vkpokemonapp.ui.theme.VkPokemonAppTheme
 
 class MainActivity : ComponentActivity() {

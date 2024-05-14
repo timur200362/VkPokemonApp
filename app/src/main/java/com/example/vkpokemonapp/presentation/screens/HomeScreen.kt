@@ -1,18 +1,14 @@
 package com.example.vkpokemonapp.presentation.screens
 
-import android.annotation.SuppressLint
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
@@ -24,7 +20,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -70,10 +65,11 @@ fun HomeScreen(
 }
 @Composable
 fun PokemonsListScreen(
-    viewModel: PokemonsViewModel = koinViewModel(),
+    pokemonsViewModel: PokemonsViewModel = koinViewModel(),
     onNavigateToDetail: (String) -> Unit
 ) {
-    val state by viewModel.state.collectAsStateWithLifecycle()
+    val state by pokemonsViewModel.state.collectAsStateWithLifecycle()
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -107,18 +103,16 @@ fun PokemonsListScreen(
                         .fillMaxWidth()
                         .padding(horizontal = 15.dp, vertical = 10.dp)
                         .shadow(5.dp)
-
                 ) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         AsyncImage(
-                            model = pokemon.url,
+                            model = pokemon.pictureUrl,
                             contentDescription = null,
                             modifier = Modifier
-                                .height(90.dp)
-                                .width(90.dp)
+                                .size(90.dp)
                                 .padding(end = 15.dp)
                                 .background(Color.White)
                         )

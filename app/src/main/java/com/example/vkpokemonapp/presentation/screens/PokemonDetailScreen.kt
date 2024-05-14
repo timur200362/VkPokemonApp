@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
@@ -20,8 +21,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import coil.compose.AsyncImage
 import com.example.vkpokemonapp.R
 import com.example.vkpokemonapp.presentation.mvi.detail.PokemonDetailViewModel
+import com.example.vkpokemonapp.presentation.mvi.picture.PokemonPictureViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -32,14 +35,19 @@ fun PokemonDetailScreen(pokemonName: String) {
 @Composable
 fun DisplayDetailInfo(
     pokemonName: String,
-    viewModel: PokemonDetailViewModel = koinViewModel()
+    detailViewModel: PokemonDetailViewModel = koinViewModel(),
+    pictureViewModel: PokemonPictureViewModel = koinViewModel()
 ) {
-    val state by viewModel.state.collectAsStateWithLifecycle()
-
-    viewModel.getPokemonDetail(pokemonName)
+    val state by detailViewModel.state.collectAsStateWithLifecycle()
+    val pictureState by pictureViewModel.state.collectAsStateWithLifecycle()
 
     val pokemon = state.pokemon
+
+    detailViewModel.getPokemonDetail(pokemonName)
+
+
     if (pokemon != null) {
+        pictureViewModel.getPokemonPicture(pokemon.forms[0].url)
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -61,18 +69,27 @@ fun DisplayDetailInfo(
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center,
-                    fontSize = 24.sp
+                    fontSize = 28.sp
+                )
+                AsyncImage(
+                    model = pictureState.pictureUrl,
+                    contentDescription = null,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .size(260.dp)
+                        .padding(top = 15.dp)
+                        .padding(bottom = 20.dp),
                 )
                 Text(
                     text = "Вес: ${pokemon.weight}",
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 15.dp)
+                        .padding(top = 340.dp)
                         .padding(bottom = 20.dp),
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center,
-                    fontSize = 24.sp
+                    fontSize = 28.sp
                 )
                 Text(
                     text = "Рост: ${pokemon.height}",
@@ -83,19 +100,7 @@ fun DisplayDetailInfo(
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center,
-                    fontSize = 24.sp
-                )
-
-                Text(
-                    text = "Тип: ${pokemon.types[0].type.name}",
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 15.dp)
-                        .padding(bottom = 20.dp),
-                    color = Color.White,
-                    fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Center,
-                    fontSize = 24.sp
+                    fontSize = 28.sp
                 )
             }
         }

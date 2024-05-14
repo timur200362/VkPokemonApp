@@ -2,6 +2,8 @@ package com.example.vkpokemonapp.presentation.mvi.list
 
 import android.util.Log
 import androidx.lifecycle.viewModelScope
+import com.example.vkpokemonapp.domain.usecase.GetPokemonDetailUseCase
+import com.example.vkpokemonapp.domain.usecase.GetPokemonPictureUseCase
 import com.example.vkpokemonapp.domain.usecase.GetPokemonsUseCase
 import com.example.vkpokemonapp.mviRealisation.BaseViewModel
 import kotlinx.coroutines.Dispatchers
@@ -9,12 +11,16 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class PokemonsViewModel(
-    getPokemonsUseCase: GetPokemonsUseCase
+    getPokemonsUseCase: GetPokemonsUseCase,
+    getPokemonDetailUseCase: GetPokemonDetailUseCase,
+    getPokemonPictureUseCase: GetPokemonPictureUseCase
 ) : BaseViewModel<PokemonsScreenState, PokemonsScreenUiEvent>() {
 
     private val reducer: PokemonsReducer = PokemonsReducer(
         PokemonsScreenState.initial(),
-        getPokemonsUseCase
+        getPokemonsUseCase,
+        getPokemonDetailUseCase,
+        getPokemonPictureUseCase
     )
 
     init {

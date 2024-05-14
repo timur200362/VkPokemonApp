@@ -5,7 +5,7 @@ import com.example.vkpokemonapp.mviRealisation.Reducer
 
 class PokemonDetailReducer(
     initial: PokemonDetailState,
-    private val getPokemonDetailUseCase: GetPokemonDetailUseCase
+    private val getPokemonDetailUseCase: GetPokemonDetailUseCase,
 ): Reducer<PokemonDetailState, PokemonDetailUiEvent>(initial) {
 
     override suspend fun reduce(
